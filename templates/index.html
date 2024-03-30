@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Speech Conversion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center; /* Center align all content */
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin: 0 auto; /* Center align the form */
+            max-width: 500px; /* Limit form width */
+        }
+        label {
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+        /* Style for dropdown menu */
+        select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: #fff;
+            cursor: pointer;
+            background-image: linear-gradient(45deg, transparent 50%, #007bff 50%);
+            background-position: calc(100% - 15px) 50%;
+            background-size: 12px 12px;
+            background-repeat: no-repeat;
+            color: #333;
+        }
+        /* Style for dropdown arrow icon */
+        select::-ms-expand {
+            display: none;
+        }
+        /* Style for options in dropdown */
+        select option {
+            padding: 10px;
+            background-color: #fff;
+            color: #333;
+        }
+        /* Style for submit button */
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+        h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Let's Convert the Text to Speech</h1>
+    <form method="POST" action="/">
+        <label for="language">Select a Language</label>
+        <select id="language" name="language">
+            <option value="1">English</option>
+            <option value="2">Tamil</option>
+        </select><br><br>
+        <label for="text">Enter The Text Here</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Let's Convert">
+    </form>
+    {% if audio_base64 %}
+    <h2>Play Audio</h2>
+    <audio controls>
+        <source src="data:audio/mp3;base64,{{ audio_base64 }}" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    {% endif %}
+</body>
+</html>
